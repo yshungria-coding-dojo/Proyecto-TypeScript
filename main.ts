@@ -10,9 +10,11 @@ export const ap = new Aprendiz('Yojan Stiben', 'Hungría', 'avatar.png' , 30, Ni
 // Mostrar de manera dinánima el HTML
 let aprendizTable: HTMLElement = document.getElementById("aprendiz")!;
 let estadisticaTable: HTMLElement = document.getElementById("estadisticas")!;
+let cursosTable: HTMLElement = document.getElementById("cursos")!;
 
 mostrarDatosAprendiz(ap);
 mostrarEstadisticas(ap);
+mostrarCursosAprendiz(ap);
 
 function mostrarDatosAprendiz(aprendiz: Aprendiz): void{
     let tBodyAprendiz = document.createElement('tbody');
@@ -29,4 +31,19 @@ function mostrarEstadisticas(aprendiz: Aprendiz): void{
     let trElement: HTMLElement = document.createElement('tr');
     trElement.innerHTML = `<td><b>Cursos certificados:</b></td><td>${numeroCertificados}</td>`;
     estadisticaTable.appendChild(trElement);
+}
+
+function mostrarCursosAprendiz(aprendiz: Aprendiz): void{
+    let cursosTbody: HTMLElement = document.getElementById("cursos")!;
+    for(let curso of aprendiz.cursos){
+        let trElement: HTMLElement = document.createElement("tr");
+        trElement.innerHTML = `<td>${curso.nombre}</td>
+        <td>${curso.horas}</td>
+        <td>${curso.calificacion}</td>
+        <td>${curso.certificado}</td>
+        <td>${curso.anio}</td>`;
+        cursosTbody.appendChild(trElement);
+    }
+    cursosTable.append(cursosTbody);
+
 }
